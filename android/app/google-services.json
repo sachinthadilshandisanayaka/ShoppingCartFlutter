@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "327707052126",
+    "firebase_url": "https://logapp-65840.firebaseio.com",
+    "project_id": "logapp-65840",
+    "storage_bucket": "logapp-65840.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:327707052126:android:674976a343fa9428e9cccf",
+        "android_client_info": {
+          "package_name": "com.example.logapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "327707052126-lrr3qfp5g709mkrunrn0c83tivhu2t12.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAyVsV8urPlhunanrudKcGfyGJUkoZTZYE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "327707052126-lrr3qfp5g709mkrunrn0c83tivhu2t12.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
