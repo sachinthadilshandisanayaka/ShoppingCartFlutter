@@ -1,9 +1,12 @@
+import 'dart:html';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:logapp/services/auth.dart';
 
 class SignIn extends StatefulWidget {
+  final Function toggleView;
+  SignIn({this.toggleView});
   @override
   _SignInState createState() => _SignInState();
 }
@@ -29,6 +32,13 @@ class _SignInState extends State<SignIn> {
             ),
           ),
         ),
+        actions: <Widget>[
+          FlatButton.icon(
+            icon: Icon(Icons.person),
+            onPressed: () {},
+            label: Text('register'),
+          ),
+        ],
       ),
       body: SafeArea(
         child: Container(
