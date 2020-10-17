@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:logapp/services/auth.dart';
 
@@ -32,17 +34,37 @@ class _SignInState extends State<SignIn> {
               vertical: 20.0,
               horizontal: 50.0,
             ),
-            child: RaisedButton(
-              onPressed: () async {
-                dynamic result = await _auth.signInAnon();
-                if (result == null) {
-                  print('error signin in');
-                } else {
-                  print('Sign in');
-                  print(result.uid);
-                }
-              },
-              child: Text('Sign in anon'),
+            child: Form(
+              child: Column(
+                children: <Widget>[
+                  SizedBox(
+                    height: 20.0,
+                  ),
+                  TextFormField(
+                    onChanged: (val) {},
+                  ),
+                  SizedBox(
+                    height: 20.0,
+                  ),
+                  TextFormField(
+                    obscureText: true,
+                    onChanged: (val) {},
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  RaisedButton(
+                    color: Colors.blue,
+                    child: Text(
+                      'Sign In',
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
+                    onPressed: () async {},
+                  ),
+                ],
+              ),
             ),
           ),
         ),

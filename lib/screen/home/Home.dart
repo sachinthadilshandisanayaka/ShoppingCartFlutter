@@ -15,7 +15,7 @@ class Home extends StatelessWidget {
           ),
         ),
         backgroundColor: Colors.white,
-        elevation: 2.0,
+        elevation: 1.0,
         actions: <Widget>[
           FlatButton.icon(
             onPressed: () async {
