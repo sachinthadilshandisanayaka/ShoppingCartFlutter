@@ -25,4 +25,15 @@ class AuthService {
       return null;
     }
   }
+
+  // sign out
+  Future signOut() async {
+    try {
+      return await _auth
+          .signOut(); // future function name 'signOut' and this 'signOut' are different
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
+  }
 }
