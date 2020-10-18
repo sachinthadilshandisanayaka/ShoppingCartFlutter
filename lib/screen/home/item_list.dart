@@ -11,7 +11,7 @@ class ItemList extends StatefulWidget {
 class _ItemListState extends State<ItemList> {
   @override
   Widget build(BuildContext context) {
-    final items = Provider.of<List<Item>>(context);
+    final items = Provider.of<List<Item>>(context) ?? [];
 
     return ListView.builder(
       itemCount: items.length,
