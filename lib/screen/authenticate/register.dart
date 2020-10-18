@@ -1,3 +1,6 @@
+import 'dart:html';
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:logapp/services/auth.dart';
 
@@ -10,9 +13,11 @@ class Register extends StatefulWidget {
 
 class _RegisterState extends State<Register> {
   final AuthService _auth = AuthService();
+  final _formKey = GlobalKey<FormState>();
 
   String email = '';
   String password = '';
+  String error = '';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,12 +51,15 @@ class _RegisterState extends State<Register> {
               horizontal: 50.0,
             ),
             child: Form(
+              key: _formKey,
               child: Column(
                 children: <Widget>[
                   SizedBox(
                     height: 20.0,
                   ),
                   TextFormField(
+                    validator: (value) =>
+                        value.isEmpty ? 'Text field shoul not be empty' : null,
                     onChanged: (val) {
                       setState(() {
                         email = val;
@@ -62,6 +70,8 @@ class _RegisterState extends State<Register> {
                     height: 20.0,
                   ),
                   TextFormField(
+                    validator: (value) =>
+                        value.length < 6 ? 'Char count shoulb be +6' : null,
                     obscureText: true,
                     onChanged: (val) {
                       setState(() {
@@ -81,10 +91,27 @@ class _RegisterState extends State<Register> {
                       ),
                     ),
                     onPressed: () async {
-                      print(password);
-                      print(email);
+                      if (_formKey.currentState.validate()) {
+                        dynamic result =
+                            _auth.registerWithEmailAndPassword(email, password);
+                        if (result == null) {
+                          setState(() {
+                            error = 'pleade supply a valid email';
+                          });
+                        }
+                      }
                     },
                   ),
+                  SizedBox(
+                    height: 12.0,
+                  ),
+                  Text(
+                    error,
+                    style: TextStyle(
+                      color: Colors.red,
+                      fontSize: 14.0,
+                    ),
+                  )
                 ],
               ),
             ),

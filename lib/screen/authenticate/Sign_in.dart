@@ -13,6 +13,7 @@ class SignIn extends StatefulWidget {
 
 class _SignInState extends State<SignIn> {
   final AuthService _auth = AuthService();
+  final _formKey = GlobalKey<FormState>();
 
   String email = '';
   String password = '';
@@ -35,7 +36,9 @@ class _SignInState extends State<SignIn> {
         actions: <Widget>[
           FlatButton.icon(
             icon: Icon(Icons.person),
-            onPressed: () {},
+            onPressed: () {
+              widget.toggleView();
+            },
             label: Text('register'),
           ),
         ],
@@ -48,12 +51,15 @@ class _SignInState extends State<SignIn> {
               horizontal: 50.0,
             ),
             child: Form(
+              key: _formKey,
               child: Column(
                 children: <Widget>[
                   SizedBox(
                     height: 20.0,
                   ),
                   TextFormField(
+                    validator: (value) =>
+                        value.isEmpty ? 'Text field shoul not be empty' : null,
                     onChanged: (val) {
                       setState(() {
                         email = val;
@@ -64,6 +70,8 @@ class _SignInState extends State<SignIn> {
                     height: 20.0,
                   ),
                   TextFormField(
+                    validator: (value) =>
+                        value.length < 6 ? 'Char count shoulb be +6' : null,
                     obscureText: true,
                     onChanged: (val) {
                       setState(() {
@@ -83,8 +91,10 @@ class _SignInState extends State<SignIn> {
                       ),
                     ),
                     onPressed: () async {
-                      print(password);
-                      print(email);
+                      if (_formKey.currentState.validate()) {
+                        print(email);
+                        print(password);
+                      }
                     },
                   ),
                 ],
