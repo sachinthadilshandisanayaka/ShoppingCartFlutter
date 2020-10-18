@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:logapp/models/user.dart';
+import 'package:logapp/services/database.dart';
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -8,8 +9,8 @@ class AuthService {
   Users _userFromFireBase(User user) {
     return user != null ? Users(uid: user.uid) : null;
   }
-  // auth change user stream
 
+  // auth change user stream
   Stream<Users> get user {
     return _auth.authStateChanges().map((User user) => _userFromFireBase(user));
   }
@@ -45,6 +46,8 @@ class AuthService {
       UserCredential userCredential = await _auth
           .createUserWithEmailAndPassword(email: email, password: password);
       User user = userCredential.user;
+      await DataBaseService(uid: user.uid)
+          .updateUserData("new item", "45.56", 5);
       return _userFromFireBase(user);
     } catch (e) {
       print(e.toString());
